@@ -1,0 +1,5 @@
+Exercise 4
+
+1. Move the car data out to index.js. Pass it in as props to Car Tool.
+
+2. Ensure it works. Enjoy your break. Sing a song.

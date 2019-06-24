@@ -1,0 +1,11 @@
+Exercise 5
+
+1. Solve world hunger.
+
+2. Solve world peace.
+
+3. Utilize the the custom useForm hook to implement a form to collect new car data. Please create an input field for each car property except the id.
+
+4. Ensure it works by outputing the car form state object to the console on each re-render.
+
+5. Bon chance!
