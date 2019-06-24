@@ -2,7 +2,7 @@ Exercise 1
 
 https://gitlab.com/t4d-classes/react-redux_06242019
 
-1. Create a new component in a new file. The name of the component is called Car Tool. Create this component in the components folder.
+1. Create a new component in a new file. The name of the component is called Car Tool. Create this component in the components folder. All of this is done in the same demo-app project.
 
 2. In the Car Tool component display a header using the header element with an h1 element inside the header element. For the header display the text "Car Tool".
 

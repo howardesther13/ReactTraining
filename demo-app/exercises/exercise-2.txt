@@ -1,0 +1,13 @@
+Exercise 2 
+
+https://gitlab.com/t4d-classes/react-redux_06242019
+
+1. Add a table of cars to Car Tool. The table (use the table element and related elements) should have the following columns:
+
+Id, Make, Model, Year, Color, Price
+
+2. Display a column header for each column.
+
+3. Hard code two rows of car data into the car table.
+
+4. Ensure it works.
