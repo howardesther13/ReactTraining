@@ -1,0 +1,7 @@
+Exercise 3
+
+1. Create an array of car objects in the Car Tool using the data from the Car Table.
+
+2. Replace the static data rows in the Car Table with dynamically generated rows using the array of cars object.
+
+3. Ensure it works with no errors.
