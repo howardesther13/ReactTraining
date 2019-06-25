@@ -1,0 +1,9 @@
+Exercise 6
+
+1. Update Car Tool to add the car to the array of cars. Be sure to generate a unique id when adding the car to the array.
+
+const newId = Math.max(...cars.map(c => c.id), 0) + 1;
+
+2. Clear the form when adding the car.
+
+3. Ensure it works.

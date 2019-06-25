@@ -1,0 +1,7 @@
+Exercise 7
+
+1. Replace the header in car tool with the Tool Header component we just created. Display the text "Car Tool" in the Tool Header component.
+
+2. Create a new component named Car Table. Move the table of cars from Car Tool into the new Car Table component. Utilize the new Car Table component in Car Tool (replacing the table of cars).
+
+3. Ensure it works.

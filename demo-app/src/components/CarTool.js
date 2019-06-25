@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useForm } from '../hooks/useForm';
 
 export const CarTool = (props) => {
 
-  const [ carForm, change ] = useForm({
+  const [ carForm, change, carResetForm ] = useForm({
     make: '',
     model: '',
     year: 1900,
     color: '',
     price: 0,
   });
+
+  const [ cars, setCars ] = useState(props.cars.concat());
+
+  const addCar = () => {
+    setCars(cars.concat({
+      ...carForm,
+      id: Math.max(...cars.map(c => c.id), 0) + 1,
+    }));
+
+    carResetForm();
+  };
 
   console.log(carForm);
 
@@ -30,7 +41,7 @@ export const CarTool = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.cars.map(car => <tr key={car.id}>
+        {cars.map(car => <tr key={car.id}>
           <td>{car.id}</td>
           <td>{car.make}</td>
           <td>{car.model}</td>
@@ -66,6 +77,9 @@ export const CarTool = (props) => {
         <input type="number" id="price-input" name="price"
                value={carForm.price} onChange={change} />
       </div>
+      <button type="button" onClick={addCar}>
+        Add Car
+      </button>
     </form>
   </>;
 
