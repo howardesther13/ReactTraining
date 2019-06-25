@@ -1,0 +1,12 @@
+Exercise 9
+
+1. Add a new column to the car table with a header of "Actions".
+
+2. In the View Car Row component add a new column and place button in it. The button should have a label of "Delete".
+
+3. When the "Delete" button is clicked, remove the car row from the table.
+
+- The array of cars state should stay in the Car Tool component
+- An easy way to delete an item from a JavaScript array immutably is to use filter
+
+4. Ensure it works.
