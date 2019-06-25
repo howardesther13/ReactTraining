@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import { useForm } from '../hooks/useForm';
 
-export const ColorForm = ({ buttonText, onSubmitColor }) => {
+export const ColorForm = (props) => {
+
+  const { buttonText, onSubmitColor } = props;
 
   const [ colorForm, change, resetColorForm ] = useForm({
     newColor: '',

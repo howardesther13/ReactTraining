@@ -26,11 +26,15 @@ export const CarTool = (props) => {
     carResetForm();
   };
 
+  const deleteCar = carId => {
+    setCars(cars.filter(c => c.id !== carId));
+  };
+
   console.log(carForm);
 
   return <>
     <ToolHeader headerText="Car Tool" />
-    <CarTable cars={cars} />
+    <CarTable cars={cars} onDeleteCar={deleteCar} />
     <form>
       <div>
         <label htmlFor="make-input">Make</label>

@@ -1,0 +1,14 @@
+Exercise 12
+
+1. Implement save and cancel for the edit car row component. When you click save, save the changes to the array of cars and change the row to car view row. When you click cancel, discard the changes and change the row to view row.
+
+Helpful Happy Hint: to do the save, make a copy of the array and replace the item
+
+concat - to make the copy
+findIndex - find the index of the car to replace
+
+2. If a row is being edited and delete is clicked on another row, perform the deletion and switch the edit row to a view row and discard the changes.
+
+3. If a row is being edited and add car is clicked, perform the add car and switch the edit row to a view row and discard the changes.
+
+4. Ensure all features work.

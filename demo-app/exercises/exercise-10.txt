@@ -1,0 +1,7 @@
+Exercise 10
+
+1. Move the form from Car Tool into a new component named Car Form.
+
+2. Utilize Car Form in Car Tool.
+
+3. Ensure everything works.

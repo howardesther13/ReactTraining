@@ -1,0 +1,11 @@
+Exercise 8
+
+1. Create a new component named Car Edit Row. The edit car row will allow you to edit an existing car. It will have form fields for make, model, year, color, price. You display the id, but the id is not editable. In the last actions column of EditCarRow there will be two buttons: Save and Cancel. Add both button but do not implement them.
+
+Helpful Hint: A form element is not needed to use input field.
+
+2. In the CarViewRow, add a new button with a label of 'Edit' to the CarViewRow. When the button is clicked, the CarViewRow changes to a CarEditRow.
+
+Only one row is editable at a time. If you click Edit button on another row while editing a row, the edited row switches back to Car View Row and the row which was last clicked switches to Car Edit Row. Do not save any changes.
+
+3. Do not worry about testing the Save or Cancel buttons. And do not worry about the Add or Delete buttons. Just ensure the Edit button works.
