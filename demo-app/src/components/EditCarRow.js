@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useForm } from '../hooks/useForm';
 
-export const EditCarRow = ({ car }) => {
+export const EditCarRow = ({ car, onSaveCar: saveCar, onCancelCar: cancelCar }) => {
 
   const [ form, change ] = useForm({ ...car });
 
@@ -15,9 +15,9 @@ export const EditCarRow = ({ car }) => {
     <td><input type="number" name="price" value={form.price} onChange={change} /></td>
     <td>
       <button type="button"
-        onClick={() => null}>Save</button>
+        onClick={() => saveCar({ ...form, id: car.id })}>Save</button>
       <button type="button"
-        onClick={() => null}>Cancel</button>
+        onClick={cancelCar}>Cancel</button>
     </td>
   </tr>
 };

@@ -6,7 +6,6 @@ import { ColorForm } from './ColorForm';
 
 export const ColorTool = (props) => {
 
-
   const [ colors, setColors ] = useState(props.colors.concat());
 
   const addColor = (color) => {

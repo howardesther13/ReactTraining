@@ -14,19 +14,34 @@ export const CarTool = (props) => {
       ...car,
       id: Math.max(...cars.map(c => c.id), 0) + 1,
     }));
+    setEditCarId(-1);
   };
 
   const deleteCar = carId => {
     setCars(cars.filter(c => c.id !== carId));
+    setEditCarId(-1);
   };
+
+  const replaceCar = car => {
+    const newCars = cars.concat();
+    newCars[newCars.findIndex(c => c.id === car.id)] = car;
+    setCars(newCars);
+    setEditCarId(-1);
+  }
 
   const editCar = carId => {
     setEditCarId(carId);
   };
 
+  const cancelCar = () => {
+    setEditCarId(-1);
+  };
+
   return <>
     <ToolHeader headerText="Car Tool" />
-    <CarTable cars={cars} editCarId={editCarId} onDeleteCar={deleteCar} onEditCar={editCar} />
+    <CarTable cars={cars} editCarId={editCarId}
+      onDeleteCar={deleteCar} onEditCar={editCar}
+      onSaveCar={replaceCar} onCancelCar={cancelCar} />
     <CarForm onSubmitCar={addCar} buttonText="Add Car" /> 
   </>;
 
