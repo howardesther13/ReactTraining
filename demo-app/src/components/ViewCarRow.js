@@ -1,12 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { carPropType } from '../propTypes/car';
 
-export const ViewCarRow = ({ car, onDeleteCar }) => {
-
-  const deleteCar = () => {
-    onDeleteCar(car.id);
-  };
+export const ViewCarRow = ({ car, onEditCar: editCar, onDeleteCar: deleteCar }) => {
 
   return <tr>
     <td>{car.id}</td>
@@ -15,11 +12,17 @@ export const ViewCarRow = ({ car, onDeleteCar }) => {
     <td>{car.year}</td>
     <td>{car.color}</td>
     <td>{car.price}</td>
-    <td><button type="button"
-      onClick={deleteCar}>Delete</button></td>
+    <td>
+      {editCar && <button type="button"
+        onClick={() => editCar(car.id)}>Edit</button>}
+      <button type="button"
+        onClick={() => deleteCar(car.id)}>Delete</button>
+    </td>
   </tr>;
 };
 
 ViewCarRow.propTypes = {
   car: carPropType,
+  onEditCar: PropTypes.func.isRequired,
+  onDeleteCar: PropTypes.func.isRequired,
 };

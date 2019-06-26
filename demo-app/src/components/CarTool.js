@@ -16,6 +16,7 @@ export const CarTool = (props) => {
   });
 
   const [ cars, setCars ] = useState(props.cars.concat());
+  const [ editCarId, setEditCarId ] = useState(-1);
 
   const addCar = () => {
     setCars(cars.concat({
@@ -30,11 +31,15 @@ export const CarTool = (props) => {
     setCars(cars.filter(c => c.id !== carId));
   };
 
+  const editCar = carId => {
+    setEditCarId(carId);
+  };
+
   console.log(carForm);
 
   return <>
     <ToolHeader headerText="Car Tool" />
-    <CarTable cars={cars} onDeleteCar={deleteCar} />
+    <CarTable cars={cars} editCarId={editCarId} onDeleteCar={deleteCar} onEditCar={editCar} />
     <form>
       <div>
         <label htmlFor="make-input">Make</label>
