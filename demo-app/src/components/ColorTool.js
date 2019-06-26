@@ -14,7 +14,7 @@ export const ColorTool = (props) => {
   };
 
   return <>
-    <ToolHeader headerText={42} />
+    <ToolHeader headerText="Color Tool" />
     <ul>
       {colors.map((color, index) => <li key={index}>{color}</li>)}
     </ul>
