@@ -1,0 +1,21 @@
+Exercise 13
+
+1. Add two new operations to the calculator: multiply and divide.
+
+2. Create a CalcTool component which looks like this:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3. Ensure it works.
