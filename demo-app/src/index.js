@@ -1,9 +1,17 @@
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
+
+import { useNumber } from './hooks/useNumber';
 
 const ADD_ACTION = 'ADD_ACTION';
 const SUBTRACT_ACTION = 'SUBTRACT_ACTION';
+const MULTIPLY_ACTION = 'MULTIPLY_ACTION';
+const DIVIDE_ACTION = 'DIVIDE_ACTION';
 
 const createAddAction = (value) => ({ type: ADD_ACTION, payload: { value }});
 const createSubtractAction = (value) => ({ type: SUBTRACT_ACTION, payload: { value }});
+const createMultiplyAction = (value) => ({ type: MULTIPLY_ACTION, payload: { value }});
+const createDivideAction = (value) => ({ type: DIVIDE_ACTION, payload: { value }});
 
 const calcReducer = (state = 0, action) => {
 
@@ -14,6 +22,10 @@ const calcReducer = (state = 0, action) => {
       return state + action.payload.value;
     case SUBTRACT_ACTION:
       return state - action.payload.value;
+    case MULTIPLY_ACTION:
+        return state * action.payload.value;
+    case DIVIDE_ACTION:
+        return state / action.payload.value;
     default:
       return state;
   }
@@ -47,9 +59,44 @@ const bindActionCreators = (actionMap, dispatchFn) => {
   }  , {});
 };
 
-const { add, subtract } = bindActionCreators({
-  add: createAddAction,
-  subtract: createSubtractAction,
+
+
+const CalcTool = ({
+  result,
+  onAdd: add, onSubtract: subtract,
+  onMultiply: multiply, onDivide: divide,
+}) => {
+
+  const [ num, change ] = useNumber(0);
+
+  useEffect(() => {
+    const numInputElement = document.querySelector('input');
+    console.log('attr value', numInputElement.getAttribute('value'));
+    console.log('obj value', numInputElement.value);
+  });
+
+  return <form>
+    <div>
+      Result: <span data-test={result}>{result}</span>
+    </div>
+    <div>
+      <input type="number" value={num} onChange={change} />
+    </div>
+    <div>
+      <button type="button" onClick={() => add(num)}>+</button>
+      <button type="button" onClick={() => subtract(num)}>-</button>
+      <button type="button" onClick={() => multiply(num)}>*</button>
+      <button type="button" onClick={() => divide(num)}>/</button>
+    </div>
+  </form>
+
+};
+
+const boundActions = bindActionCreators({
+  onAdd: createAddAction,
+  onSubtract: createSubtractAction,
+  onMultiply: createMultiplyAction,
+  onDivide: createDivideAction,
 }, calcStore.dispatch);
 
 
@@ -57,10 +104,10 @@ calcStore.subscribe(() => {
   console.log(calcStore.getState());
 
   ReactDOM.render(
-    <CalcTool {/* pass some props */} />,
+    <CalcTool result={calcStore.getState()} {...boundActions} />,
     document.querySelector('#root'),
   );
 });
 
 
-add(0);
+boundActions.onAdd(0);
