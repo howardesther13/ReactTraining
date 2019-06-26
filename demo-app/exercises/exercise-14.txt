@@ -1,0 +1,7 @@
+Exercise 14
+
+1. Upgrade Car Tool to use Redux (use the real Redux and the real React-Redux).
+
+Hint: Implement all of the Redux code in index.js.
+
+2. Ensure it works.

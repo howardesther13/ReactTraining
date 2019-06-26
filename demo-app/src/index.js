@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, bindActionCreators } from 'redux';
+import { connect, Provider } from 'react-redux';
 
 import { useNumber } from './hooks/useNumber';
 
@@ -32,32 +34,32 @@ const calcReducer = (state = 0, action) => {
 
 };
 
-const createStore = (reducerFn) => {
+// const createStore = (reducerFn) => {
 
-  let currentState = undefined;
-  const subscribersFn = [];
+//   let currentState = undefined;
+//   const subscribersFn = [];
 
-  return {
-    getState: () => currentState,
-    dispatch: (action) => {
-      currentState = reducerFn(currentState, action);
-      subscribersFn.forEach(cb => cb());
-    },
-    subscribe: (cb) => {
-      subscribersFn.push(cb);
-    },
-  };
+//   return {
+//     getState: () => currentState,
+//     dispatch: (action) => {
+//       currentState = reducerFn(currentState, action);
+//       subscribersFn.forEach(cb => cb());
+//     },
+//     subscribe: (cb) => {
+//       subscribersFn.push(cb);
+//     },
+//   };
 
-};
+// };
 
 const calcStore = createStore(calcReducer);
 
-const bindActionCreators = (actionMap, dispatchFn) => {
-  return Object.keys(actionMap).reduce( (boundActionMap, actionKey) => {
-    boundActionMap[actionKey] = (...params) => dispatchFn(actionMap[actionKey](...params));
-    return boundActionMap;
-  }  , {});
-};
+// const bindActionCreators = (actionMap, dispatchFn) => {
+//   return Object.keys(actionMap).reduce( (boundActionMap, actionKey) => {
+//     boundActionMap[actionKey] = (...params) => dispatchFn(actionMap[actionKey](...params));
+//     return boundActionMap;
+//   }  , {});
+// };
 
 
 
@@ -92,22 +94,59 @@ const CalcTool = ({
 
 };
 
-const boundActions = bindActionCreators({
+const mapDispatchToProps = (dispatch) => bindActionCreators({
   onAdd: createAddAction,
   onSubtract: createSubtractAction,
   onMultiply: createMultiplyAction,
   onDivide: createDivideAction,
-}, calcStore.dispatch);
+}, dispatch);
 
+const mapStateToProps = (state) => {
+  return {
+    result: state,
+  };
+};
 
-calcStore.subscribe(() => {
-  console.log(calcStore.getState());
+// const { Provider, Consumer } = React.createContext(null);
 
-  ReactDOM.render(
-    <CalcTool result={calcStore.getState()} {...boundActions} />,
-    document.querySelector('#root'),
-  );
-});
+// const connect = (mapStatePropsFn, mapDispatchToPropsFn) => {
 
+//   return (PresentationalComponent) => {
 
-boundActions.onAdd(0);
+//     class ContainerComponent extends React.Component {
+
+//       constructor(props) {
+//         super(props);
+//         this.dispatchToPropsMap = mapDispatchToPropsFn(props.store.dispatch);
+//       }
+
+//       componentDidMount() {
+//         this.unsubscribeStore = this.props.store.subscribe(() => {
+//           this.forceUpdate();
+//         });
+//       }
+
+//       componentWillUnmount() {
+//         this.unsubscribeStore();
+//       }
+
+//       render() {
+//         const stateToPropsMap = mapStatePropsFn(this.props.store.getState());
+//         return <PresentationalComponent {...stateToPropsMap} {...this.dispatchToPropsMap} />;
+//       }
+//     }
+
+//     return () => <Consumer>{(value) => <ContainerComponent store={value} />}</Consumer>;
+//   };
+// };
+
+const createCalcToolContainer = connect(mapStateToProps, mapDispatchToProps);
+
+const CalcToolContainer = createCalcToolContainer(CalcTool);
+
+ReactDOM.render(
+  <Provider store={calcStore}>
+    <CalcToolContainer />
+  </Provider>,
+  document.querySelector('#root'),
+);
