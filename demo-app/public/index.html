@@ -34,5 +34,149 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+
+      'use strict';
+
+      // const outer = () => {
+
+      //   let t = 2;
+
+      //   setTimeout(() => {
+      //     t = 4;
+      //   }, 2000);
+
+      //   return () => {
+      //     console.log(t);
+      //   };
+      // };
+
+      // const inner = outer();
+
+      // inner();
+
+      // setTimeout(() => {
+      //   inner();
+      // }, 4000);
+
+      // setTimeout(() => {
+      //     console.log('a');
+      //     setTimeout(() => {
+      //         console.log('b');
+      //         setTimeout(() => {
+      //             console.log('c');
+      //         }, 500);
+      //     }, 1000);
+      // }, 2000);
+
+      // function allDone() {
+      //   console.log('done');
+      // }
+
+      // let counter = 0;
+
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('a');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, 1000);
+
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('b');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, 500);
+
+      // counter++;
+      // setTimeout(() => {
+      //   console.log('c');
+      //   counter--;
+      //   if (counter === 0) {
+      //     allDone();
+      //   }
+      // }, 2000);
+
+      // class Promise {
+
+
+      //   constructor(asyncOpFunc) {
+
+      //     this.resolveFns = [];
+      //     this.rejectFns = [];
+
+      //     const resolve = (data) => {
+      //       this.resolveFns.forEach(resolveFn => {
+      //         resolveFn(data);
+      //       })
+      //     };
+
+      //     const reject = () => {};
+
+      //     // youngLady
+      //     asyncOpFunc(resolve, reject);
+
+      //   }
+
+      //   then(resolveFn) {
+      //     this.resolveFns.push(resolveFn);
+      //   }
+      // }
+
+      const youngMan = new Promise(function youngLady(resolve, reject) {
+
+        setTimeout(() => {
+
+          console.log('she say no!');
+          reject('she has fallen in love with his best friend...');
+        }, 2000);
+
+      });
+
+      youngMan
+        .then((result) => {
+          console.log(result);
+          console.log('yay she said yes!');
+        })
+        .catch((result) => {
+          console.log(result);
+          console.log('time to sign up for eHarmony to find a more compatible match');
+        });
+      
+
+      console.log('young man proposes!');
+    
+    </script>
+    <script>
+    
+      'use strict';
+
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('readystatechange', () => {
+
+          if (xhr.status === 200 && xhr.readyState === 4) {
+            console.log(JSON.parse(xhr.responseText));
+          }
+      });
+
+      xhr.open('GET', 'http://localhost:3050/cars');
+      xhr.send();
+
+
+      // build me the following API call, exactly as the call looks here...
+      // create the myFetch function as described below...
+
+      myFetch('http://localhost:3050/cars').then(cars => console.log(cars));
+
+
+
+
+    </script>
   </body>
 </html>
