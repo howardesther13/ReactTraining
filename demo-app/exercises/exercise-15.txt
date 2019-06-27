@@ -1,0 +1,20 @@
+Exercise 15
+
+Helpful Happy Hint:
+
+return fetch('http://localhost:3050/cars', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(car),
+})
+  .then(res => res.json())
+
+https://en.wikipedia.org/wiki/Representational_state_transfer
+
+https://github.com/typicode/json-server
+
+1. Implement append, replace, and delete using asynchronous operations.
+
+2. After doing the append, replace and delete, perform a refresh on the cars.
+
+3. Ensure it works.

@@ -9,6 +9,7 @@ export const CarTable = ({
   cars, editCarId,
   onDeleteCar: deleteCar, onEditCar: editCar,
   onSaveCar: saveCar, onCancelCar: cancelCar,
+  onRefreshCars: refreshCars,
 }) => {
   return (
     <table>
@@ -32,6 +33,13 @@ export const CarTable = ({
             : <ViewCarRow key={car.id} car={car}
                 onDeleteCar={deleteCar} onEditCar={editCar} />)}
       </tbody>
+      <tfoot>
+        <tr>
+          <td colSpan="6">
+            <button type="button" onClick={refreshCars}>Refresh</button>
+          </td>
+        </tr>
+      </tfoot>
     </table>
   );
 };

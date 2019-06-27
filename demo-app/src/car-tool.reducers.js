@@ -2,18 +2,21 @@ import { combineReducers } from 'redux';
 import {
   APPEND_CAR_ACTION, REPLACE_CAR_ACTION, DELETE_CAR_ACTION,
   CANCEL_CAR_ACTION, EDIT_CAR_ACTION,
+  REFRESH_CARS_REQUEST_ACTION, REFRESH_CARS_DONE_ACTION,
 } from './car-tool.actions';
 
 
-const carList = [
-  { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2018, color: 'silver', price: 30000 },
-  { id: 2, make: 'Tesla', model: 'S', year: 2019, color: 'red', price: 120000 },
-];
+// const carList = [
+//   { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2018, color: 'silver', price: 30000 },
+//   { id: 2, make: 'Tesla', model: 'S', year: 2019, color: 'red', price: 120000 },
+// ];
 
 
-const carsReducer = (state = carList, action) => {
+const carsReducer = (state = [], action) => {
 
   switch (action.type) {
+    case REFRESH_CARS_DONE_ACTION:
+      return action.payload.cars;
     case APPEND_CAR_ACTION:
       return state.concat({
         ...action.payload.car,
@@ -40,6 +43,7 @@ const editCarIdReducer = (state = -1, action) => {
   }
 
   if ([
+    REFRESH_CARS_REQUEST_ACTION,
     APPEND_CAR_ACTION, REPLACE_CAR_ACTION,
     DELETE_CAR_ACTION, CANCEL_CAR_ACTION
   ].includes(action.type)) {
