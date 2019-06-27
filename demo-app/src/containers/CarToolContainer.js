@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 
 import {
-  createAppendCarAction, createCancelCarAction, createDeleteCarAction,
-  createEditCarAction, createReplaceCarAction, refreshCars,
+  createCancelCarAction, createEditCarAction,
+  refreshCars, appendCar, replaceCar, deleteCar
 } from '../car-tool.actions';
 import { CarTool } from '../components';
 
@@ -13,9 +13,9 @@ export const CarToolContainer = connect(
   ({ cars, editCarId }) => ({ cars, editCarId }),
   dispatch => bindActionCreators({
     onRefreshCars: refreshCars,
-    onAddCar: createAppendCarAction,
-    onSaveCar: createReplaceCarAction,
-    onDeleteCar: createDeleteCarAction,
+    onAddCar: appendCar,
+    onSaveCar: replaceCar,
+    onDeleteCar: deleteCar,
     onEditCar: createEditCarAction,
     onCancelCar: createCancelCarAction,
   }, dispatch),
